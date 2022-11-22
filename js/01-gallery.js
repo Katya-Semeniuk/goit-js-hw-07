@@ -36,10 +36,10 @@ createImgCardsMarkup(galleryItems);
 
 function onContainerGalleryClick(e) {
   e.preventDefault();
-  console.log(e.target)
-  if (!e.target == 'IMG') {
+
+  if (!e.target.classList.contains('gallery__image')) {
       return 
-    }
+  }
   
 const instance = basicLightbox.create(`
     <div class="modal">
@@ -56,7 +56,7 @@ const instance = basicLightbox.create(`
   instance.show();
 
   function onEscapeButton(e) {
-    if (!e.targen == 'ESCAPE') {
+    if (e.key === 'Escape') {
       instance.close();
    }
  }
