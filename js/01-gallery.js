@@ -9,8 +9,6 @@ const containerGallery = document.querySelector('.gallery');
 const imgMarkup = createImgCardsMarkup(galleryItems);
 containerGallery.insertAdjacentHTML('beforeend', imgMarkup);
 containerGallery.addEventListener('click', onContainerGalleryClick);
-// console.log(imgMarkup)
-
 
 
 
@@ -25,13 +23,16 @@ function createImgCardsMarkup(galleryItems) {
       src= '${preview}'
       data-source= '${original}'
       alt= '${description}'
-    />
+      />
+    </a>
 </div> `
         })
       .join('');
 
 }
 createImgCardsMarkup(galleryItems);
+
+
 
 
 function onContainerGalleryClick(e) {
@@ -41,9 +42,13 @@ function onContainerGalleryClick(e) {
       return 
   }
   
+
+  const currentFullImagePath = e.target.dataset.source;
+  const currentImgAlt = e.target.dataset.alt;
+  
 const instance = basicLightbox.create(`
     <div class="modal">
-      <img src='${original}' alt= '${description}'>  
+      <img width="800" height="600" src="${currentFullImagePath}" alt="${currentImgAlt}">
     </div>
 `, {
     onShow: (instance) => {
@@ -61,4 +66,8 @@ const instance = basicLightbox.create(`
    }
  }
 }
+
+
+
+
 
